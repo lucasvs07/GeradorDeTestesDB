@@ -23,15 +23,13 @@ namespace GeradorDeTestes.Infra.BancoDeDados.ModuloMateria
                    (
                         [NOME],
                         [SERIE],
-                        [DISCIPLINA_NUMERO],
-                        [DISCIPLINA_NOME]
+                        [DISCIPLINA_NUMERO]
                    )
                 VALUES
                    (
                         @NOME,
                         @SERIE,
-                        @DISCIPLINA_NUMERO,
-                        @DISCIPLINA_NOME
+                        @DISCIPLINA_NUMERO
                     ); 
                 SELECT SCOPE_IDENTITY()";
 
