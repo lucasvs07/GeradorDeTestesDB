@@ -19,25 +19,25 @@ namespace GeradorDeTestes.Infra.BancoDeDados.ModuloMateria
                 "Integrated Security=True;Pooling=False";
 
         private const string sqlInserir =
-            @"INSERT INTO [dbo].[TBMateria]
-                (
-                    [NUMERO],
-                    [NOME],
-                    [SERIE],
-                    [DISCIPLINA_NUMERO]
-           
+            @"INSERT INTO [TBMATERIA]
+                   (
+                        [NOME],
+                        [SERIE],
+                        [DISCIPLINA_NUMERO],
+                        [DISCIPLINA_NOME]
+                   )
                 VALUES
                    (
-                        @Numero,
-                        @Nome,
-                        @Serie,
-                        @Disciplina_Numero);
-
-                    SELECT SCOPE_IDENTITY()";
+                        @NOME,
+                        @SERIE,
+                        @DISCIPLINA_NUMERO,
+                        @DISCIPLINA_NOME
+                    ); 
+                SELECT SCOPE_IDENTITY()";
 
         private const string sqlEditar =
             @"UPDATE [TBMateria]
-                SET [Numero] = @NUMERO,
+                SET 
                     [Nome] = @NOME,
                     [Serie] = @SERIE,
                     [Disciplina_Numero] = @DISCIPLINA_NUMERO
@@ -78,7 +78,7 @@ namespace GeradorDeTestes.Infra.BancoDeDados.ModuloMateria
                 TBDISCIPLINA AS D ON
                 MT.DISCIPLINA_NUMERO = D.NUMERO
             WHERE
-                [NUMERO] = @NUMERO";
+                MT.NUMERO = @NUMERO";
 
 #endregion
 
@@ -230,6 +230,7 @@ namespace GeradorDeTestes.Infra.BancoDeDados.ModuloMateria
             comando.Parameters.AddWithValue("NOME", materia.Nome);
             comando.Parameters.AddWithValue("SERIE", materia.Serie);
             comando.Parameters.AddWithValue("DISCIPLINA_NUMERO", materia.Disciplina.Numero);
+            comando.Parameters.AddWithValue("DISCIPLINA_NOME", materia.Disciplina.Nome);
         }
         #endregion
     }
